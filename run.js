@@ -32,14 +32,14 @@ function main() {
   copyGraphTsFile('common/value.ts', path.join(libCommonDir, 'value.ts'))
 
   copyGraphTsFile('chain/ethereum.ts', path.join(libChainDir, 'ethereum.ts'))
-  copyGraphTsFile('chain/near.ts', path.join(libChainDir, 'near.ts'))
+  copyGraphTsFile('chain/cosmos.ts', path.join(libChainDir, 'cosmos.ts'))
 
   copyGraphTsFile('index.ts', path.join(libDir, 'index.ts'))
 
   try {
     console.log('Compiling AssemblyScript and generating Rust code...')
-    const sourceFile = path.join(__dirname, 'assembly_script', 'near.ts')
-    const destinationFile = path.join(buildDir, 'near.wasm')
+    const sourceFile = path.join(__dirname, 'assembly_script', 'cosmos.ts')
+    const destinationFile = path.join(buildDir, 'cosmos.wasm')
     const transformer = path.join(__dirname, 'dist', 'transformer.js')
 
     if (

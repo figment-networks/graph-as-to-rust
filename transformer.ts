@@ -31,8 +31,8 @@ export default class ToRustTransformer extends Transform {
     this.program.parser.sources.forEach((x) => {
       x.statements.forEach((y) => {
         if (y instanceof NamespaceDeclaration) {
-          // FIXME: Hard-coded `near` literal in there
-          if (y.name.text === 'near') {
+          // FIXME: Hard-coded `cosmos` literal in there
+          if (y.name.text === 'cosmos') {
             y.members.forEach((z) => {
               if (z instanceof ClassDeclaration) {
                 declarations.push(this.resolveClass(z))
@@ -54,8 +54,8 @@ export default class ToRustTransformer extends Transform {
       })
     })
 
-    // FIXME: Hard-coded `near` literal in there
-    const file = new File('./near.rs')
+    // FIXME: Hard-coded `cosmos` literal in there
+    const file = new File('./cosmos.rs')
 
     const aliasesByName = Object.fromEntries(typeAliases.map((alias) => [`Asc${alias.name}`, alias.aliasOf]))
 
@@ -202,9 +202,9 @@ export default class ToRustTransformer extends Transform {
     file.writeLine('')
 
     file.writeLine(`impl AscIndexId for ${aliasName} {`)
-    // FIXME: Hard-coded `near` literal in there
+    // FIXME: Hard-coded `cosmos` literal in there
     file.writeLine(
-      `    const INDEX_ASC_TYPE_ID: IndexForAscTypeId = IndexForAscTypeId::NearArray${arrayType.inner.name};`,
+      `    const INDEX_ASC_TYPE_ID: IndexForAscTypeId = IndexForAscTypeId::CosmosArray${arrayType.inner.name};`,
     )
     file.writeLine('}')
     file.writeLine('')
@@ -230,8 +230,8 @@ export default class ToRustTransformer extends Transform {
     file.writeLine('')
 
     file.writeLine(`impl AscIndexId for ${aliasName} {`)
-    // FIXME: Hard-coded `near` literal in there
-    file.writeLine(`    const INDEX_ASC_TYPE_ID: IndexForAscTypeId = IndexForAscTypeId::Near${enumType.name}Enum;`)
+    // FIXME: Hard-coded `cosmos` literal in there
+    file.writeLine(`    const INDEX_ASC_TYPE_ID: IndexForAscTypeId = IndexForAscTypeId::Cosmos${enumType.name}Enum;`)
     file.writeLine('}')
     file.writeLine('')
   }
@@ -257,8 +257,8 @@ export default class ToRustTransformer extends Transform {
     file.writeLine('')
 
     file.writeLine(`impl AscIndexId for Asc${clazz.name} {`)
-    // FIXME: Hard-coded `near` literal in there
-    file.writeLine(`    const INDEX_ASC_TYPE_ID: IndexForAscTypeId = IndexForAscTypeId::Near${clazz.name};`)
+    // FIXME: Hard-coded `cosmos` literal in there
+    file.writeLine(`    const INDEX_ASC_TYPE_ID: IndexForAscTypeId = IndexForAscTypeId::Cosmos${clazz.name};`)
     file.writeLine('}')
     file.writeLine('')
   }

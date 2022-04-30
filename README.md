@@ -3,7 +3,7 @@
 This project contains an AssemblyScript compiler's transformer that reads the `graph-ts` source files
 and generates Rust bindings for them.
 
-For now, the project is mostly in a rough state but working state. It generates the binding for `near`
+For now, the project is mostly in a rough state but working state. It generates the binding for `cosmos`
 namespace only hard-coding the namespace read as well as the output file.
 
 ### Run
@@ -32,7 +32,7 @@ node run.js
 ```
 
 This will copy AssemblyScript files from `graph-ts` into a temporary folder inside the project,
-then will launch `asc` compiler with the correct transformer and generates a `near.rs` with all the
-NEAR Rust bindings for The Graph.
+then will launch `asc` compiler with the correct transformer and generates a `cosmos.rs` with all the
+Cosmos Rust bindings for The Graph.
 
 > You can add `DEBUG="*"` in front of the `node run.js` command to activate debug logs and show more logging.
